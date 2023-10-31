@@ -1,7 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using QLCuaHangBanSach.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<CuaHangBanSachContext>(options => options
+.UseSqlServer(builder.Configuration.GetConnectionString("CuaHangBanSachContext")));
 
 var app = builder.Build();
 

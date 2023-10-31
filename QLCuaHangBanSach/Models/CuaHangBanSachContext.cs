@@ -27,7 +27,7 @@ namespace QLCuaHangBanSach.Models
         public virtual DbSet<Nhanvien> Nhanviens { get; set; } = null!;
         public virtual DbSet<Nhaxuatban> Nhaxuatbans { get; set; } = null!;
         public virtual DbSet<Sach> Saches { get; set; } = null!;
-        public virtual DbSet<Tacgium> Tacgia { get; set; } = null!;
+        public virtual DbSet<Tacgia> Tacgia { get; set; } = null!;
         public virtual DbSet<Theloai> Theloais { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -35,7 +35,7 @@ namespace QLCuaHangBanSach.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=LAPTOP-CFGTBTO6\\SQLEXPRESS;Initial Catalog=CuaHangBanSach;Persist Security Info=True;User ID=sa;Password=Nvq@211241738;");
+                optionsBuilder.UseSqlServer("Data Source=DESKTOP-N1I5QPD\\MSSQLSERVER03;Initial Catalog=CuaHangBanSach;Persist Security Info=True;User ID=sa;Password=sa;");
             }
         }
 
@@ -43,7 +43,7 @@ namespace QLCuaHangBanSach.Models
         {
             modelBuilder.Entity<ChiTietHdb>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => new { e.SoHd, e.MaSach });
 
                 entity.ToTable("ChiTietHDB");
 
@@ -71,9 +71,9 @@ namespace QLCuaHangBanSach.Models
 
             modelBuilder.Entity<ChiTietHdm>(entity =>
             {
-                entity.HasNoKey();
+				entity.HasKey(e => new { e.SoHd, e.MaSach });
 
-                entity.ToTable("ChiTietHDM");
+				entity.ToTable("ChiTietHDM");
 
                 entity.Property(e => e.MaSach)
                     .HasMaxLength(10)
@@ -345,7 +345,7 @@ namespace QLCuaHangBanSach.Models
                     .HasConstraintName("FK__SACH__MaNXB__3F466844");
             });
 
-            modelBuilder.Entity<Tacgium>(entity =>
+            modelBuilder.Entity<Tacgia>(entity =>
             {
                 entity.HasKey(e => e.MaTg)
                     .HasName("PK__TACGIA__27250074D096FB7C");

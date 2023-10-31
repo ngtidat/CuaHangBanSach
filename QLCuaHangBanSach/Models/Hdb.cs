@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace QLCuaHangBanSach.Models
 {
@@ -9,6 +10,9 @@ namespace QLCuaHangBanSach.Models
         public DateTime NgayBan { get; set; }
         public string MaKh { get; set; } = null!;
         public string MaNv { get; set; } = null!;
+        public decimal? VAT { get; set; }
+        public decimal? ChietKhau { get; set; }
+        public decimal TongTien { get; set; }
 
         public virtual Khachhang MaKhNavigation { get; set; } = null!;
         public virtual Nhanvien MaNvNavigation { get; set; } = null!;
